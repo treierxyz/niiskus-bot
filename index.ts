@@ -21,7 +21,7 @@ client.once(Events.ClientReady, c => {
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
 
-    if (message.content.includes(marksona)) {
+    if (message.content.toLowerCase().includes(marksona)) {
         if (cooldowns[message.guildId] >= Date.now()) {
             console.log(`(${new Date(Date.now()).toISOString()}) Cooldown @ ${message.guild} kuni ${new Date(cooldowns[message.guildId]).toISOString()}`);
             return;
