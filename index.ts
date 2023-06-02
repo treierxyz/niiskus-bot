@@ -6,6 +6,8 @@ const xmlser = require('xmlserializer');
 const dom = require('@xmldom/xmldom').DOMParser;
 
 const marksona = 'niiskus';
+const cooldown = 1000 * 60 * 10
+const cooldowns = {};
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
@@ -14,13 +16,17 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 // We use 'c' for the event parameter to keep it separate from the already defined 'client'
 client.once(Events.ClientReady, c => {
     console.log(`Ready! Logged in as ${c.user.tag}`);
-    
 });
 
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
 
     if (message.content.includes(marksona)) {
+        if (cooldowns[message.guildId] >= Date.now()) {
+            console.log(`(${new Date(Date.now()).toISOString()}) Cooldown @ ${message.guild} kuni ${new Date(cooldowns[message.guildId]).toISOString()}`);
+            return;
+        };
+        cooldowns[message.guildId] = Date.now() + cooldown;
         await fetch('https://meteo.physic.ut.ee/et/frontmain.php?m=2').then(res => res.text()).then(html => {
             const p5doc = parse5.parse(html);
             const xhtml = xmlser.serializeToString(p5doc);
