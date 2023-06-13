@@ -8,9 +8,9 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install
-# If you are building your code for production
-# RUN npm ci --omit=dev
+# If you are building your code for dev
+# RUN npm install
+RUN npm ci --omit=dev
 
 # Bundle app source
 COPY . .
