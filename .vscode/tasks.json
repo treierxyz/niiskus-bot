@@ -13,13 +13,30 @@
             }
         },
         {
+            "label": "Make build dir",
+            "type": "shell",
+            "command": "mkdir -p build",
+        },
+        {
+            "label": "Install Buildx",
+            "type": "shell",
+            "command": "docker buildx install"
+        },
+        {
+            "label": "Setup Buildx",
+            "type": "shell",
+            "command": "docker buildx create --use --driver docker-container"
+        },
+        {
             "label": "Build Docker image",
             "type": "shell",
-            "command": "mkdir -p build; sudo docker build -t treierxyz/niiskus-bot -o - . > build/niiskus-bot.tar",
+            "command": "docker buildx build -t treierxyz/niiskus-bot -o type=docker,dest=build/niiskus-bot.tar .",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": ["Install Buildx","Setup Buildx"]
         }
     ]
 }
