@@ -1,4 +1,5 @@
-FROM node:latest
+FROM node:alpine
+ENV NODE_ENV=production
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -8,9 +9,8 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-# If you are building your code for dev
-# RUN npm install
-RUN npm ci --omit=dev
+# Does clean install, --omit=dev comes from setting NODE_ENV
+RUN npm ci
 
 # Bundle app source
 COPY . .

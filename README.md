@@ -1,17 +1,14 @@
 # niiskus
 Väike Discord bott mis vastab niiskusega iga kord kui mainitakse niiskust.
 
-Dockerfile build:
+Dockerfile build ja salvestamine build/ kausta: 
+##### (see käsk on ka taskina VSCodei kasutajate jaoks olemas)
 ```
-docker build . -t treierxyz/niiskus-bot
-```
-
-Docker pildi salvestamiseks saab kasutada:
-```
-docker save treierxyz/niiskus-bot:latest > niiskus.tar
+mkdir -p build; sudo docker build -t treierxyz/niiskus-bot -o - . > build/niiskus-bot.tar
 ```
 
-Laadimine käib suht sarnaselt:
+
+Laadimine serveris:
 ```
 docker load < niiskus.tar
 ```

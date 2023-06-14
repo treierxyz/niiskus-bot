@@ -131,3 +131,4 @@ dist
 
 # DiscordJS config (contains token)
 config.json
+build/

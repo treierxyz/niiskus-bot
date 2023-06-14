@@ -1,12 +1,15 @@
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
-const { enableCooldown, cooldownLength, keyword } = require('./options.json');
+const { enableCooldown, cooldownLength, keywords } = require('./options.json');
 const xpath = require('xpath');
 const parse5 = require('parse5');
 const xmlser = require('xmlserializer');
 const dom = require('@xmldom/xmldom').DOMParser;
 
 const cooldowns = {};
+
+// Checker for if string contains any of the keywords
+const checker = value => keywords.some(keyword => value.includes(keyword));
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
@@ -20,7 +23,7 @@ client.once(Events.ClientReady, c => {
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
 
-    if (message.content.toLowerCase().includes(keyword)) {
+    if (checker(message.content.toLowerCase())) {
         if (enableCooldown) { // if cooldowns are enabled
             if (cooldowns[message.guildId] >= Date.now()) {
                 console.log(`(${new Date(Date.now()).toISOString()}) Cooldown @ ${message.guild} kuni ${new Date(cooldowns[message.guildId]).toISOString()}`);
