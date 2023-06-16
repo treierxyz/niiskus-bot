@@ -1,5 +1,72 @@
 {
     "enableCooldown": false,
     "cooldownLength": 600000,
-    "keywords": ["niiskus","niiske"]
+    "keywords": [
+        "niiskus",
+        "niiske"
+    ],
+    "keywords2": {
+        "niiskus": {
+            "value": [
+                "niiskus",
+                "niiske"
+            ],
+            "data": {
+                "position": 1,
+                "response": "niiskus on "
+            }
+        },
+        "tuul": {
+            "value": [
+                "tuul"
+            ],
+            "data": {
+                "position": 3,
+                "response": "tuul on "
+            }
+        },
+        "temperatuur": {
+            "value": [
+                "temperatuur"
+            ],
+            "data": {
+                "position": 0,
+                "response": "temperatuur on "
+            }
+        },
+        "õhurõhk": {
+            "value": [
+                "õhurõhk",
+                "rõhk"
+            ],
+            "data": {
+                "position": 2,
+                "response": "õhurõhk on "
+            }
+        },
+        "sademed": {
+            "value": [
+                "sajab",
+                "vihm",
+                "sademed",
+                "sademeid"
+            ],
+            "data": {
+                "position": 4,
+                "response": "sademeid on "
+            }
+        },
+        "kiirgusvoog": {
+            "value": [
+                "kiirgusvoog"
+            ],
+            "data": {
+                "position": 5,
+                "response": "kiirgusvoog on "
+            }
+        },
+        "ilm": {
+            "value": ["ilm"]
+        }
+    }
 }
