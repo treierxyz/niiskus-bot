@@ -1,13 +1,13 @@
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 const { token } = require('./config.json');
-const { enableCooldown, cooldownLength, keywords, keywords2 } = require('./options.json');
+const { enableCooldown, cooldownLength, keywords } = require('./options.json');
 const xpath = require('xpath');
 const parse5 = require('parse5');
 const xmlser = require('xmlserializer');
 const dom = require('@xmldom/xmldom').DOMParser;
 
 const cooldowns = {};
-// for (const key in keywords2) {
+// for (const key in keywords) {
 //     cooldowns[key] = {};
 // }
 // console.log(cooldowns);
@@ -15,20 +15,38 @@ const cooldowns = {};
 // Checker for if string contains any of the keywords
 const checker = (messageString, keywordArray) => keywordArray.some(keyword => messageString.includes(keyword));
 
-// checker2 needs to:
-// check every keyword
-// if a match is found, it needs to return the position for the data
+const loneChecker = (messageString, keywordArray) => keywordArray.some(keyword => messageString === keyword);
+
 const checker2 = (messageString, keywordArray) => {
-    const out = [];
+    const out: string[] = [];
     for (const key in keywordArray) { // check every keyword
-        if (checker(messageString, keywordArray[key].value)) {
+        if (checker(messageString, keywordArray[key].words)) {
+            out.push(key);
+        }
+        if (loneChecker(messageString, keywordArray[key].lonelyWords)) {
             out.push(key);
         }
     }
     return out;
 }
-// console.log(checker2("niiskus ja tuul on tugev", keywords2));
+// console.log(checker2("niiskus on kõrge ja tuul on tugev, yo", keywords));
 
+function getSentence(key, nodes) {
+    if (key === "niiskus") {
+        return keywords[key].data.response + nodes[keywords[key].data.position].data.substring(0, nodes[keywords[key].data.position].data.length - 2) + '%';
+    } else {
+        return keywords[key].data.response + nodes[keywords[key].data.position].data;
+    }
+}
+
+function sendReply(message, values) {
+    message.reply({
+        content: `${values.join('\n')}`,
+        allowedMentions: {
+            repliedUser: false
+        }
+    });
+}
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
@@ -41,8 +59,8 @@ client.once(Events.ClientReady, c => {
 
 client.on('messageCreate', async message => {
     if (message.author.bot) return;
-    const pos = checker2(message.content.toLowerCase(), keywords2);
-    if (pos && pos.length) {
+    const allMatchKeys: string[] = checker2(message.content.toLowerCase(), keywords);
+    if (allMatchKeys && allMatchKeys.length) {
         // COOLDOWN IS BROKEN, DO NOT USE
         if (enableCooldown) { // if cooldowns are enabled
             // for (const key in pos) {
@@ -66,40 +84,22 @@ client.on('messageCreate', async message => {
             const select = xpath.useNamespaces({ "x": "http://www.w3.org/1999/xhtml" });
             const nodes = select("//x:b/text()", doc);
 
-            const values = [];
+            let values: string[] = [];
             
-            if (pos.includes("ilm")) {
-                for (const key in keywords2) {
-                    if (key === "niiskus") {
-                        values.push(keywords2[key].data.response + nodes[keywords2[key].data.position].data.substring(0, nodes[keywords2[key].data.position].data.length - 2) + '%');
-                    } else if (key !== "ilm") {
-                        values.push(keywords2[key].data.response + nodes[keywords2[key].data.position].data);
+            if (allMatchKeys.includes("ilm")) {
+                for (const key in keywords) {
+                    if (key !== "ilm") {
+                        values.push(getSentence(key, nodes));
                     }
                 }
-                message.reply({
-                    content: `${values.join('\n')}`,
-                    allowedMentions: {
-                        repliedUser: false
-                    }
-                });
+                sendReply(message, values);
                 return;
-            }
-            pos.forEach(e => {
-                if (e === "niiskus") {
-                    values.push(keywords2[e].data.response + nodes[keywords2[e].data.position].data.substring(0, nodes[keywords2[e].data.position].data.length - 2) + '%');
-                } else {
-                    values.push(keywords2[e].data.response + nodes[keywords2[e].data.position].data);
-                }
-            });
-            
-            values.forEach(value => {
-                message.reply({
-                    content: `${value}`,
-                    allowedMentions: {
-                        repliedUser: false
-                    }
+            } else {
+                allMatchKeys.forEach(key => {
+                    values.push(getSentence(key, nodes));
                 });
-            });
+                sendReply(message, values);
+            }            
         })
     }
 });

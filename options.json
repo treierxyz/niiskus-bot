@@ -1,73 +1,77 @@
 {
     "enableCooldown": false,
     "cooldownLength": 600000,
-    "keywords": [
-        "niiskus",
-        "niiske"
-    ],
-    "keywords2": {
+    "keywords": {
         "niiskus": {
-            "value": [
+            "words": [
                 "niiskus",
                 "niiske"
             ],
+            "lonelyWords": [],
             "data": {
                 "position": 1,
                 "response": "niiskus on "
             }
         },
         "tuul": {
-            "value": [
+            "words": [
                 "tuul"
             ],
+            "lonelyWords": [],
             "data": {
                 "position": 3,
                 "response": "tuul on "
             }
         },
         "temperatuur": {
-            "value": [
+            "words": [
                 "temperatuur"
             ],
+            "lonelyWords": [],
             "data": {
                 "position": 0,
                 "response": "temperatuur on "
             }
         },
         "õhurõhk": {
-            "value": [
+            "words": [
                 "õhurõhk",
                 "rõhk"
             ],
+            "lonelyWords": [],
             "data": {
                 "position": 2,
                 "response": "õhurõhk on "
             }
         },
         "sademed": {
-            "value": [
+            "words": [
                 "sajab",
                 "vihm",
-                "sademed",
-                "sademeid"
+                "sademe"
             ],
+            "lonelyWords": [],
             "data": {
                 "position": 4,
                 "response": "sademeid on "
             }
         },
         "kiirgusvoog": {
-            "value": [
+            "words": [
                 "kiirgusvoog"
             ],
+            "lonelyWords": [],
             "data": {
                 "position": 5,
                 "response": "kiirgusvoog on "
             }
         },
         "ilm": {
-            "value": [
+            "words": [
                 "ilmateade"
+            ],
+            "lonelyWords": [
+                "ilm"
             ]
         }
     }
