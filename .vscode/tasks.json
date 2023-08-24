@@ -35,15 +35,13 @@
             "command": "docker buildx create --use --driver docker-container"
         },
         {
-            "label": "Build Docker image",
+            "label": "Build Docker image (Unix)",
             "type": "shell",
-            "command": "docker buildx build -t treierxyz/niiskus-bot -o type=docker,dest=build/niiskus-bot.tar .",
+            "command": "./build-docker.sh",
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
-            "dependsOrder": "sequence",
-            "dependsOn": ["TypeScript compile","Install Buildx","Setup Buildx"]
+            }
         }
     ]
 }

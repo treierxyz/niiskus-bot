@@ -1,6 +1,5 @@
 .vscode
-src
 node_modules
 build
+dist
 npm-debug.log
-tsconfig.json

@@ -1,5 +1,5 @@
+# stage-0
 FROM node:alpine
-ENV NODE_ENV=production
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -8,11 +8,29 @@ WORKDIR /usr/src/app
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
 COPY package*.json ./
-
-# Does clean install, --omit=dev comes from setting NODE_ENV
-RUN npm ci
+COPY tsconfig.json ./
 
 # Bundle app source
-COPY . .
+COPY src ./src
 
+# Does clean install and build
+RUN npm ci
+RUN npm run build
+
+# stage-1
+FROM node:alpine
+
+# as before, but no TS
+WORKDIR /usr/src/app
+COPY package*.json ./
+COPY config ./config
+COPY .env ./
+
+# copy compiled JS
+COPY --from=0 /usr/src/app/dist ./dist
+
+# clean install, no dev
+RUN npm ci --omit=dev
+
+# Run node
 CMD [ "node", "." ]
