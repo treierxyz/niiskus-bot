@@ -7,7 +7,7 @@ Boti põhimõte sai alguse sõpradevahelise naljana ühes serveris milles pesits
 
 Andmed on võetud Tartu Ülikooli füüsika instituudi ilmajaamast, kuid allikaid võib tulevikus juurde tulla.
 
-## Üles seadmine
+## Ülesseadmine
 
 Vajalik on `npm` (või muu eelistatud JavaScripti paketihaldur) ning NodeJS.
 
