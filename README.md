@@ -1,5 +1,5 @@
 # niiskus
-[[Eesti keel](./README.et.md) / [English](./README.en.md)]
+[[Eesti keel](./README.et.md) / [English](./README.md)]
 
 A simple Discord.js bot, which replies with humidity and other relevant weather data every time a keyword(s) is mentioned in a channel.
 

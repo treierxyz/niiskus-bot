@@ -1,5 +1,5 @@
 # niiskus
-[[Eesti keel](./README.et.md) / [English](./README.en.md)]
+[[Eesti keel](./README.et.md) / [English](./README.md)]
 
 Lihtne Discord.js-il põhinev bott, mis vastab niiskuse ja muu ilmateatega iga kord kui kanalis mainitakse sobivat märksõna/sõnu.
 
