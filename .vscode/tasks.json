@@ -10,7 +10,14 @@
             "group": {
                 "kind": "test",
                 "isDefault": true
-            }
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": ["TypeScript compile"]
+        },
+        {
+            "label": "TypeScript compile",
+            "type": "shell",
+            "command": "npx tsc",
         },
         {
             "label": "Make build dir",
@@ -36,7 +43,7 @@
                 "isDefault": true
             },
             "dependsOrder": "sequence",
-            "dependsOn": ["Install Buildx","Setup Buildx"]
+            "dependsOn": ["TypeScript compile","Install Buildx","Setup Buildx"]
         }
     ]
 }

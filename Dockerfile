@@ -15,4 +15,4 @@ RUN npm ci
 # Bundle app source
 COPY . .
 
-CMD [ "npx", "ts-node", "." ]
+CMD [ "node", "." ]

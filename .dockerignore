@@ -1,3 +1,6 @@
+.vscode
+src
 node_modules
-npm-debug.log
 build
+npm-debug.log
+tsconfig.json
