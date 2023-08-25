@@ -11,7 +11,7 @@ The data is taken from the University of Tartu Institute of Physics' weather sta
 
 `npm` (or any other preferred JavaScript package manager) and NodeJS are required.
 
-Create a `.env` file which will contain the token for your bot. The contents should look like this:
+Use this environment variable to supply the bot token, either in a `.env` file or otherwise:
 ```bash
 TOKEN=replace.me.pretty.please
 ```

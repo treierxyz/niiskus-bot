@@ -24,7 +24,6 @@ FROM node:alpine
 WORKDIR /usr/src/app
 COPY package*.json ./
 COPY config ./config
-COPY .env ./
 
 # copy compiled JS
 COPY --from=0 /usr/src/app/dist ./dist

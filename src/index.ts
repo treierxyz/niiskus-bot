@@ -6,6 +6,10 @@ import { generateReply } from './generateresponse';
 import { sendReplyWithThanks } from './sendresponse';
 
 const token = process.env.TOKEN;
+if (token === undefined) {
+    logger.error('You didn\'t supply a bot token! Please add the environment variable `TOKEN=replace.me.pretty.please` either into `.env` or any other valid way!')
+    process.exit(1)
+}
 
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });

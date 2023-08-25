@@ -11,7 +11,7 @@ Andmed on võetud Tartu Ülikooli füüsika instituudi ilmajaamast, kuid allikai
 
 Vajalik on `npm` (või muu eelistatud JavaScripti paketihaldur) ning NodeJS.
 
-Lisa `.env` fail, mis sisaldab boti tookenit. Sisu peaks välja nägema selline:
+Kasuta seda environment muutujat boti tookeni edastamiseks, kas `.env` failis või muud moodi:
 ```bash
 TOKEN=replace.me.pretty.please
 ```
