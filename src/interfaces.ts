@@ -12,6 +12,11 @@ export interface Keyword {
     }
 }
 
+export interface Thanks {
+    words: string[],
+    responses: string[]
+}
+
 export interface Cooldowns {
     [index: Snowflake]: {
         [id: string]: Date

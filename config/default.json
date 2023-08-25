@@ -11,6 +11,16 @@
         "percip_sum": 2,
         "heat_index": 2
     },
+    "thanks": [
+        {
+            "words": ["ty", "tänud", "thank you"],
+            "responses": ["np m8", "my pleasure", "\"i didn't need yer help, ya know\"\n\\- demoman tf2", "👍", "sama siin"]
+        },
+        {
+            "words": ["armastan sind", "ily", "❤️"],
+            "responses": ["mina sind ka ❤️", "lol (lots of love) ❤️"]
+        }
+    ],
     "keywords": [
         {
             "id": "humidity",

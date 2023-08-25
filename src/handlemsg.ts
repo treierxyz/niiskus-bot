@@ -1,5 +1,5 @@
 import { Message, MessageCollector } from "discord.js";
-import { Keyword, Matchmaker } from "./interfaces";
+import { Keyword, Matchmaker, Thanks } from "./interfaces";
 import config from 'config'
 import manageCooldown from "./cooldown";
 import { sendReply } from "./sendresponse";
@@ -56,17 +56,19 @@ export function tyCheck(message: Message) {
         return
     }
 
-    const thanksWords = ['ty', 'tänud', 'thank you', 'armastan sind']
-    const filter = (m: Message) => thanksWords.some((keyword: string) => m.content.includes(keyword))
+    const thanks: Thanks[] = config.get('thanks')
+
+    const filter = (m: Message) => thanks.some((thank: Thanks) => thank.words.some((keyword: string) => m.content.includes(keyword)))
     const collector = message.channel.createMessageCollector({ filter, time: 30000 })
+
     collector.on('collect', m => {
         if (!m.author.bot) {
-            if (m.content.includes('armastan sind')) {
-                sendReply(m, 'mina sind ka')
-            } else {
-                const strings = ['np m8', 'my pleasure', '\"i didn\'t need yer help, ya know\"\n\\- demoman tf2', '👍', 'sama siin']
-                sendReply(m, strings[Math.floor(Math.random() * strings.length)])
-            }
+            thanks.forEach(thank => {
+                if (thank.words.some((keyword: string) => m.content.includes(keyword))) {
+                    const randResponse: string = thank.responses[Math.floor(Math.random() * thank.responses.length)]
+                    sendReply(m, randResponse)
+                }
+            })
             collector.stop()
             activeCollectors.delete(message.author.id)
         }
@@ -76,4 +78,6 @@ export function tyCheck(message: Message) {
     })
 
     activeCollectors.set(message.author.id, collector)
+    
+    
 }
