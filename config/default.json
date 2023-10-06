@@ -36,7 +36,7 @@
         },
         {
             "id": "wind",
-            "words": ["tuul"],
+            "words": ["tuul", "wimdy"],
             "response": {
                 "et": "tuul on ${wind_dir}° ${wind_mean} m/s",
                 "en": "wind is ${wind_dir}° ${wind_mean} m/s"
