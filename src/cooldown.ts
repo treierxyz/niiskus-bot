@@ -9,7 +9,7 @@ const cooldownLength: number = config.get('cooldownLength')
 function manageCooldown(message: Message, keywordId: string): boolean {
     if (message.guildId) {
         if (cooldowns?.[message.guildId]?.[keywordId] && cooldowns[message.guildId][keywordId].getTime() >= Date.now()) { // check if already cooled down
-            logger.info(`Cooldown @ ${message.guild} for "${keywordId}" until ${cooldowns[message.guildId][keywordId].toISOString()}`);
+            logger.info(`Cooldown in: ${message.guild}, reason: "${keywordId}", lasting for: ${cooldowns[message.guildId][keywordId].toISOString()}`);
             return true
         } else { // else if no cooldown
             cooldowns[message.guildId] = {
