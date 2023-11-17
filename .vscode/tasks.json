@@ -19,29 +19,5 @@
             "type": "shell",
             "command": "npx tsc",
         },
-        {
-            "label": "Make build dir",
-            "type": "shell",
-            "command": "mkdir -p build",
-        },
-        {
-            "label": "Install Buildx",
-            "type": "shell",
-            "command": "docker buildx install"
-        },
-        {
-            "label": "Setup Buildx",
-            "type": "shell",
-            "command": "docker buildx create --use --driver docker-container"
-        },
-        {
-            "label": "Build Docker image (Unix)",
-            "type": "shell",
-            "command": "./build-docker.sh",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        }
     ]
 }
