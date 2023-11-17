@@ -1,15 +1,19 @@
 # niiskus
-[[Eesti keel](./README.et.md) / [English](./README.md)]
 
-A simple Discord.js bot, which replies with humidity and other relevant weather data every time a keyword(s) is mentioned in a channel.
+> Discord.js weather bot
 
-The concept of the bot started as an inside joke on a server I frequent, where people tend to randomly post the relative humidity of their location, more often than not followed by a chain of similar replies. This became so commonplace that one day, I got the idea to automate it and create a bot that would reply for me.
+![GitHub License](https://img.shields.io/github/license/treierxyz/niiskus-bot)
 
-The data is taken from the University of Tartu Institute of Physics' weather station, but more data sources may be added in the future.
+
+A Discord.js bot, which replies with relevant weather data according to keywords. "niiskus" is the Estonian word for "humidity".
+
+The data is fetched from the University of Tartu Institute of Physics' weather station, but more data sources may be added in the future.
+
+The concept of the bot started as an inside joke on a Discord server I frequent, which became so commonplace that one day, I got the idea to automate it and create a bot that would reply for me.
 
 ## Setup
 
-`npm` (or any other preferred JavaScript package manager) and NodeJS are required.
+`npm` and NodeJS (or any other compatible JavaScript package manager/runtime) are required.
 
 Use this environment variable to supply the bot token, either in a `.env` file or otherwise:
 ```bash
@@ -18,16 +22,13 @@ TOKEN=replace.me.pretty.please
 
 The following commands install the dependencies and run the bot in developer mode:
 ```bash
-npm ci
+npm install
 npm run dev
 ```
 ## Docker
-A Docker image can be built as such:
+You can pull the latest stable release from `ghcr.io/treierxyz/niiskus-bot:latest`
+
+Alternatively you can use the provided Dockerfile to build an image:
 ```bash
 docker build -t treierxyz/niiskus-bot .
-```
-
-`build-docker.sh` builds a Docker image file and requires the Docker `buildx` plugin. This generates `build/niiskus-bot.tar`, which can be loaded into Docker as such:
-```bash
-docker load < niiskus-bot.tar
 ```
