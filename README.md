@@ -2,8 +2,9 @@
 
 > Discord.js weather bot
 
-![GitHub License](https://img.shields.io/github/license/treierxyz/niiskus-bot)
-
+[![GitHub License](https://img.shields.io/github/license/treierxyz/niiskus-bot)](https://github.com/treierxyz/niiskus-bot/blob/main/LICENSE)
+[![GitHub Workflow Status (with event)](https://img.shields.io/github/actions/workflow/status/treierxyz/niiskus-bot/docker-publish.yml)](https://github.com/treierxyz/niiskus-bot/actions/workflows/docker-publish.yml)
+[![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-latest-deepskyblue)](https://ghcr.io/treierxyz/niiskus-bot)
 
 A Discord.js bot, which replies with relevant weather data according to keywords. "niiskus" is the Estonian word for "humidity".
 
