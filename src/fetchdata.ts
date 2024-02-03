@@ -1,4 +1,5 @@
 import { GrafanaQueryResult, PWQueryResult } from "./interfaces";
+import logger from "./logger";
 
 export async function fetchWeather_UT_FI(): Promise<GrafanaQueryResult> {
 	const fetchURL: string = "https://atmos.physic.ut.ee/grafana/api/ds/query";
@@ -40,6 +41,12 @@ export async function fetchWeather_UT_FI(): Promise<GrafanaQueryResult> {
 
 export async function fetchWeather_PirateWeather(): Promise<PWQueryResult> {
 	const coords = "58.383333,26.716667";
+	if (process.env.PW_API_KEY === undefined) {
+		logger.error(
+			"You didn't supply a Pirate Weather API key! Please add the environment variable `PW_API_KEY=replace.me.pretty.please` either into `.env` or any other valid way!",
+		);
+		throw new Error("Missing Pirate Weather API key");
+	}
 	const fetchURL: string = `https://api.pirateweather.net/forecast/${process.env.PW_API_KEY}/${coords}?exclude=minutely,hourly,daily,alerts&units=si`;
 
 	return await fetch(fetchURL, {
