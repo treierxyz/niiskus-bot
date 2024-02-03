@@ -2,14 +2,15 @@
 	"enableCooldown": true,
 	"cooldownLength": 60000,
 	"language": "et",
+	"dataSource": "UT_FI",
 	"rounding": {
-		"relhum_mean": 2,
-		"temperature_mean": 2,
-		"wind_mean": 2,
-		"wind_dir": 0,
-		"baro_mean": 2,
-		"percip_sum": 2,
-		"heat_index": 2
+		"relativeHumidity": 2,
+		"temperature": 2,
+		"windSpeed": 2,
+		"windDirection": 0,
+		"airPressure": 2,
+		"percipitation": 2,
+		"heatIndex": 2
 	},
 	"thanks": [
 		{
@@ -32,8 +33,8 @@
 			"id": "humidity",
 			"words": ["niiskus", "niiske"],
 			"response": {
-				"et": "niiskus on ${relhum_mean}%",
-				"en": "humidity is ${relhum_mean}%"
+				"et": "niiskus on ${relativeHumidity}%",
+				"en": "humidity is ${relativeHumidity}%"
 			},
 			"failedResponse": {
 				"et": "niiskus on N/A",
@@ -44,8 +45,8 @@
 			"id": "wind",
 			"words": ["tuul", "wimdy"],
 			"response": {
-				"et": "tuul on ${wind_dir}° ${wind_mean} m/s",
-				"en": "wind is ${wind_dir}° ${wind_mean} m/s"
+				"et": "tuul on ${windDirection}° ${windSpeed} m/s",
+				"en": "wind is ${windDirection}° ${windSpeed} m/s"
 			},
 			"failedResponse": {
 				"et": "tuul on N/A",
@@ -56,8 +57,8 @@
 			"id": "temperature",
 			"words": ["temperatuur"],
 			"response": {
-				"et": "temperatuur on ${temperature_mean}°C",
-				"en": "temperature is ${temperature_mean}°C"
+				"et": "temperatuur on ${temperature}°C",
+				"en": "temperature is ${temperature}°C"
 			},
 			"failedResponse": {
 				"et": "temperatuur on N/A",
@@ -68,8 +69,8 @@
 			"id": "air_pressure",
 			"words": ["õhurõhk", "rõhk"],
 			"response": {
-				"et": "õhurõhk on ${baro_mean} hPa",
-				"en": "air pressure is ${baro_mean} hPa"
+				"et": "õhurõhk on ${airPressure} hPa",
+				"en": "air pressure is ${airPressure} hPa"
 			},
 			"failedResponse": {
 				"et": "õhurõhk on N/A",
@@ -80,8 +81,8 @@
 			"id": "precipitation",
 			"words": ["sademed", "sajab", "vihm", "sademe"],
 			"response": {
-				"et": "sademeid on ${percip_sum} mm (1h jooksul)",
-				"en": "precipitation is ${percip_sum} mm (per 1h)"
+				"et": "sademeid on ${percipitation} mm (1h jooksul)",
+				"en": "precipitation is ${percipitation} mm (per 1h)"
 			},
 			"failedResponse": {
 				"et": "sademed on N/A",
@@ -92,8 +93,8 @@
 			"id": "heat_index",
 			"words": ["soojusindeks"],
 			"response": {
-				"et": "soojusindeks (tunnetatud temp) on ${heat_index}°C",
-				"en": "heat index (feels like temp) is ${heat_index}°C"
+				"et": "soojusindeks (tunnetatud temp) on ${heatIndex}°C",
+				"en": "heat index (feels like temp) is ${heatIndex}°C"
 			},
 			"failedResponse": {
 				"et": "soojusindeks on N/A",

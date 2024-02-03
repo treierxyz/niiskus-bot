@@ -1,17 +1,24 @@
-import { GrafanaQueryResult, Keyword, Rounding } from "./interfaces";
+import {
+	GrafanaQueryResult,
+	Keyword,
+	PWQueryResult,
+	Rounding,
+	WeatherDataCommon,
+} from "./interfaces";
 import config from "config";
-import getMetric from "./handledata";
-import fetchWeather from "./fetchdata";
+import { grafanaToCommon, pirateToCommon } from "./handledata";
+import { fetchWeather_PirateWeather, fetchWeather_UT_FI } from "./fetchdata";
+import logger from "./logger";
 const lang: string = config.get("language");
 const round: Rounding = config.get("rounding");
-const keywords: Keyword[] = config.get("keywords");
+const datasrc: "UT_FI" | "PW" = config.get("dataSource");
 
-function getLocalizedString(key: Keyword, weatherData: GrafanaQueryResult) {
+function getLocalizedString(key: Keyword, weatherData: WeatherDataCommon) {
 	const regex: RegExp = /\${(.*?)}/g;
 	const template = key.response[lang];
 	try {
 		return template.replace(regex, (_match, placeholder): string => {
-			const result = getMetric(placeholder, weatherData);
+			const result = weatherData[placeholder as keyof WeatherDataCommon];
 			if (result === null) {
 				throw new Error("Result is null");
 			}
@@ -22,44 +29,33 @@ function getLocalizedString(key: Keyword, weatherData: GrafanaQueryResult) {
 	}
 }
 
-function getSentence(key: Keyword, weatherData: GrafanaQueryResult) {
-	switch (key.id) {
-		case "humidity":
-		case "temperature":
-		case "wind":
-		case "air_pressure":
-		case "precipitation":
-		case "heat_index":
-			return getLocalizedString(key, weatherData);
-		default:
-			return null;
-	}
-}
-
 export async function generateReply(allMatchKeys: Keyword[] | undefined) {
 	if (allMatchKeys === undefined) {
 		return;
 	}
 
-	const weatherData: GrafanaQueryResult = await fetchWeather();
+	let weatherData: WeatherDataCommon;
+
+	switch (datasrc) {
+		case "UT_FI":
+			weatherData = grafanaToCommon(await fetchWeather_UT_FI());
+			break;
+		case "PW":
+			weatherData = pirateToCommon(await fetchWeather_PirateWeather());
+			break;
+		default:
+			logger.error(`No match for data source ${datasrc}`);
+			return;
+	}
+
+	// const selected_func = switch_dict[datasrc] || default_case;
+	// const weatherData: WeatherDataCommon = grafanaToCommon(await selected_func());
 
 	const strings: string[] = [];
 
-	// if (allMatchKeys.loneMatch.length) {
-	// 	for (const keyword of allMatchKeys.loneMatch) {
-	// 		switch (keyword.id) {
-	// 			case "all":
-	// 				for (const kw of keywords) {
-	// 					const sentence = getSentence(kw, weatherData);
-	// 					if (sentence !== null) strings.push(sentence);
-	// 				}
-	// 		}
-	// 	}
-	// } else {
 	for (const keyword of allMatchKeys) {
-		const sentence = getSentence(keyword, weatherData);
+		const sentence = getLocalizedString(keyword, weatherData);
 		if (sentence !== null) strings.push(sentence);
 	}
-	// }
 	return strings.join("\n");
 }

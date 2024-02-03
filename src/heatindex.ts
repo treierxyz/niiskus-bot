@@ -12,14 +12,7 @@ function toCels(fahrenheit: number) {
 	return ((fahrenheit - 32) * 5) / 9;
 }
 
-function calcHeatIndex(
-	temp: number | null,
-	relhum: number | null,
-): number | null {
-	if (temp === null || relhum === null) {
-		return null;
-	}
-
+function calcHeatIndex(temp: number, relhum: number): number {
 	const temp_fahr = toFahr(temp);
 
 	if (temp_fahr < 80) {
