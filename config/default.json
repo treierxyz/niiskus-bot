@@ -3,6 +3,7 @@
 	"cooldownLength": 60000,
 	"language": "et",
 	"dataSource": "UT_FI",
+	"defaultCoords": "58.383333,26.716667",
 	"rounding": {
 		"relativeHumidity": 2,
 		"temperature": 2,
