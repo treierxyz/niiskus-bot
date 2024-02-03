@@ -1,103 +1,108 @@
 {
-    "enableCooldown": true,
-    "cooldownLength": 60000,
-    "language": "et",
-    "rounding": {
-        "relhum_mean": 2,
-        "temperature_mean": 2,
-        "wind_mean": 2,
-        "wind_dir": 0,
-        "baro_mean": 2,
-        "percip_sum": 2,
-        "heat_index": 2
-    },
-    "thanks": [
-        {
-            "words": ["ty", "tänud", "thank you", "thanks", "tnx", "aitäh"],
-            "responses": ["np m8", "my pleasure", "\"i didn't need yer help, ya know\"\n\\- demoman tf2", "👍", "sama siin"]
-        },
-        {
-            "words": ["armastan sind", "ily", "❤️"],
-            "responses": ["mina sind ka ❤️", "lol (lots of love) ❤️"]
-        }
-    ],
-    "keywords": [
-        {
-            "id": "humidity",
-            "words": ["niiskus","niiske"],
-            "response": {
-                "et": "niiskus on ${relhum_mean}%",
-                "en": "humidity is ${relhum_mean}%"
-            },
-            "failedResponse": {
-                "et": "niiskus on N/A",
-                "en": "humidity is N/A"
-            }
-        },
-        {
-            "id": "wind",
-            "words": ["tuul", "wimdy"],
-            "response": {
-                "et": "tuul on ${wind_dir}° ${wind_mean} m/s",
-                "en": "wind is ${wind_dir}° ${wind_mean} m/s"
-            },
-            "failedResponse": {
-                "et": "tuul on N/A",
-                "en": "wind is N/A"
-            }
-        },
-        {
-            "id": "temperature",
-            "words": ["temperatuur"],
-            "response": {
-                "et": "temperatuur on ${temperature_mean}°C",
-                "en": "temperature is ${temperature_mean}°C"
-            },
-            "failedResponse": {
-                "et": "temperatuur on N/A",
-                "en": "temperature is N/A"
-            }
-        },
-        {
-            "id": "air_pressure",
-            "words": ["õhurõhk","rõhk"],
-            "response": {
-                "et": "õhurõhk on ${baro_mean} hPa",
-                "en": "air pressure is ${baro_mean} hPa"
-            },
-            "failedResponse": {
-                "et": "õhurõhk on N/A",
-                "en": "air pressure is N/A"
-            }
-        },
-        {
-            "id": "precipitation",
-            "words": ["sademed","sajab","vihm","sademe"],
-            "response": {
-                "et": "sademeid on ${percip_sum} mm (1h jooksul)",
-                "en": "precipitation is ${percip_sum} mm (per 1h)"
-            },
-            "failedResponse": {
-                "et": "sademed on N/A",
-                "en": "precipitation is N/A"
-            }
-        },
-        {
-            "id": "heat_index",
-            "words": ["soojusindeks"],
-            "response": {
-                "et": "soojusindeks (tunnetatud temp) on ${heat_index}°C",
-                "en": "heat index (feels like temp) is ${heat_index}°C"
-            },
-            "failedResponse": {
-                "et": "soojusindeks on N/A",
-                "en": "heat index is N/A"
-            }
-        },
-        {
-            "id": "all",
-            "words": ["ilmateade"],
-            "lonelyWords": ["ilm"]
-        }
-    ]
+	"enableCooldown": true,
+	"cooldownLength": 60000,
+	"language": "et",
+	"rounding": {
+		"relhum_mean": 2,
+		"temperature_mean": 2,
+		"wind_mean": 2,
+		"wind_dir": 0,
+		"baro_mean": 2,
+		"percip_sum": 2,
+		"heat_index": 2
+	},
+	"thanks": [
+		{
+			"words": ["ty", "tänud", "thank you", "thanks", "tnx", "aitäh"],
+			"responses": [
+				"np m8",
+				"my pleasure",
+				"\"i didn't need yer help, ya know\"\n\\- demoman tf2",
+				"👍",
+				"sama siin"
+			]
+		},
+		{
+			"words": ["armastan sind", "ily", "❤️"],
+			"responses": ["mina sind ka ❤️", "lol (lots of love) ❤️"]
+		}
+	],
+	"keywords": [
+		{
+			"id": "humidity",
+			"words": ["niiskus", "niiske"],
+			"response": {
+				"et": "niiskus on ${relhum_mean}%",
+				"en": "humidity is ${relhum_mean}%"
+			},
+			"failedResponse": {
+				"et": "niiskus on N/A",
+				"en": "humidity is N/A"
+			}
+		},
+		{
+			"id": "wind",
+			"words": ["tuul", "wimdy"],
+			"response": {
+				"et": "tuul on ${wind_dir}° ${wind_mean} m/s",
+				"en": "wind is ${wind_dir}° ${wind_mean} m/s"
+			},
+			"failedResponse": {
+				"et": "tuul on N/A",
+				"en": "wind is N/A"
+			}
+		},
+		{
+			"id": "temperature",
+			"words": ["temperatuur"],
+			"response": {
+				"et": "temperatuur on ${temperature_mean}°C",
+				"en": "temperature is ${temperature_mean}°C"
+			},
+			"failedResponse": {
+				"et": "temperatuur on N/A",
+				"en": "temperature is N/A"
+			}
+		},
+		{
+			"id": "air_pressure",
+			"words": ["õhurõhk", "rõhk"],
+			"response": {
+				"et": "õhurõhk on ${baro_mean} hPa",
+				"en": "air pressure is ${baro_mean} hPa"
+			},
+			"failedResponse": {
+				"et": "õhurõhk on N/A",
+				"en": "air pressure is N/A"
+			}
+		},
+		{
+			"id": "precipitation",
+			"words": ["sademed", "sajab", "vihm", "sademe"],
+			"response": {
+				"et": "sademeid on ${percip_sum} mm (1h jooksul)",
+				"en": "precipitation is ${percip_sum} mm (per 1h)"
+			},
+			"failedResponse": {
+				"et": "sademed on N/A",
+				"en": "precipitation is N/A"
+			}
+		},
+		{
+			"id": "heat_index",
+			"words": ["soojusindeks"],
+			"response": {
+				"et": "soojusindeks (tunnetatud temp) on ${heat_index}°C",
+				"en": "heat index (feels like temp) is ${heat_index}°C"
+			},
+			"failedResponse": {
+				"et": "soojusindeks on N/A",
+				"en": "heat index is N/A"
+			}
+		}
+	],
+	"full_output": {
+		"words": ["ilmateade"],
+		"lonelyWords": ["ilm"]
+	}
 }
