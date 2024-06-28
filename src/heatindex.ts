@@ -1,6 +1,6 @@
 // Heat index constants
 const hi_a = [
-	-42.379, 2.04901523, 10.14333127, 0.22475541, -6.83783e-3, -5.481717e-2,
+	-42.379, 2.04901523, 10.14333127, -0.22475541, -6.83783e-3, -5.481717e-2,
 	1.22874e-3, 8.5282e-4, -1.99e-6,
 ];
 
@@ -38,10 +38,10 @@ function calcHeatIndex(temp: number, relhum: number): number {
 			hi_a[2] * relhum +
 			hi_a[3] * temp_fahr * relhum +
 			hi_a[4] * temp_fahr ** 2 +
-			hi_a[4] * relhum ** 2 +
-			hi_a[5] * temp_fahr ** 2 * relhum +
-			hi_a[6] * temp_fahr * relhum ** 2 +
-			hi_a[7] * temp_fahr ** 2 * relhum ** 2 +
+			hi_a[5] * relhum ** 2 +
+			hi_a[6] * temp_fahr ** 2 * relhum +
+			hi_a[7] * temp_fahr * relhum ** 2 +
+			hi_a[8] * temp_fahr ** 2 * relhum ** 2 +
 			adjust,
 	);
 }
